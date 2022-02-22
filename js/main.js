@@ -2,6 +2,8 @@ const getRandomInteger = (min, max) => {
   if(min < 0 || max < 0 || max < min || min === max) {
     return false;
   }
+  min = Math.ceil(min);
+  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
