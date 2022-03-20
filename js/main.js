@@ -104,4 +104,6 @@ const createAdvertisement = (element, index) => {
   });
 };
 
-const similarAdvertisements = Array.from({length: 10}, createAdvertisement);
+const similarAdvertisements = () => Array.from({length: 10}, createAdvertisement);
+
+similarAdvertisements();
