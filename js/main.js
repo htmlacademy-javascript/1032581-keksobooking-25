@@ -1,3 +1,3 @@
-import {similarAdvertisements} from './modules/create-advertisements.js';
+import {generateAdvertisingMarkup} from './modules/generate-advertising-markup.js';
 
-similarAdvertisements();
+generateAdvertisingMarkup();
