@@ -30,6 +30,6 @@ const createAdvertisement = (element, index) => {
   });
 };
 
-const similarAdvertisements = () => Array.from({length: 10}, createAdvertisement);
+const createSimilarAdvertisements = () => Array.from({length: 10}, createAdvertisement);
 
-export {similarAdvertisements};
+export {createSimilarAdvertisements};
