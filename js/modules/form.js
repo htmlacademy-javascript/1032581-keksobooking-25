@@ -2,6 +2,7 @@ const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
+const filterFormSelects = filterForm.querySelectorAll('.map__filter');
 
 const toInactiveState = () => {
   form.classList.add('ad-form--disabled');
@@ -12,6 +13,9 @@ const toInactiveState = () => {
   }
   for(const fieldset of filterFormFieldsets) {
     fieldset.setAttribute('disabled', '');
+  }
+  for(const select of filterFormSelects) {
+    select.setAttribute('disabled', '');
   }
 };
 
@@ -24,6 +28,9 @@ const toActiveState = () => {
   }
   for(const fieldset of filterFormFieldsets) {
     fieldset.removeAttribute('disabled');
+  }
+  for(const select of filterFormSelects) {
+    select.removeAttribute('disabled', '');
   }
 };
 
