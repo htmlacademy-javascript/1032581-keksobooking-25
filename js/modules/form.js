@@ -6,11 +6,13 @@ const formFieldsets = form.querySelectorAll('fieldset');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
 const filterFormSelects = filterForm.querySelectorAll('.map__filter');
 const priceField = form.querySelector('#price');
+const defaultPriceValue = priceField.getAttribute('placeholder');
 const typeField = form.querySelector('#type');
 const roomNumberField = form.querySelector('#room_number');
 const roomCapacityField = form.querySelector('#capacity');
 const timeInField = form.querySelector('#timein');
 const timeOutField = form.querySelector('#timeout');
+const resetButton = form.querySelector('.ad-form__reset');
 
 /* Validation */
 const pristine = new Pristine(form, {
@@ -75,7 +77,7 @@ const onTimeInChange = () => {
 };
 
 /* Submit form */
-const submitForm = (evt) => {
+const onSubmitForm = (evt) => {
   evt.preventDefault();
 
   const isValid = pristine.validate();
@@ -84,13 +86,18 @@ const submitForm = (evt) => {
   }
 };
 
+const onResetForm = () => {
+  priceField.setAttribute('placeholder', defaultPriceValue);
+};
+
 /* Events */
 const addValidateFormEvents = () => {
   typeField.addEventListener('change', onTypeChange);
   roomCapacityField.addEventListener('change', onRoomCapacityChange);
   timeOutField.addEventListener('change', onTimeOutChange);
   timeInField.addEventListener('change', onTimeInChange);
-  form.addEventListener('submit', submitForm);
+  form.addEventListener('submit', onSubmitForm);
+  resetButton.addEventListener('click', onResetForm);
 };
 
 const removeValidateFormEvents = () => {
@@ -98,7 +105,8 @@ const removeValidateFormEvents = () => {
   roomCapacityField.removeEventListener('change', onRoomCapacityChange);
   timeOutField.removeEventListener('change', onTimeOutChange);
   timeInField.removeEventListener('change', onTimeInChange);
-  form.removeEventListener('submit', submitForm);
+  form.removeEventListener('submit', onSubmitForm);
+  resetButton.addEventListener('click', onResetForm);
 };
 
 /* States */
