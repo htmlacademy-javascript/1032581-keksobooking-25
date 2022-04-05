@@ -3,5 +3,4 @@ import {toInactiveState, toActiveState} from './modules/form.js';
 
 toInactiveState();
 toActiveState();
-
 generateAdvertisingMarkup();
