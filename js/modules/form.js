@@ -1,4 +1,5 @@
 import {formOptions} from './form-options.js';
+import {initPriceSlider} from './price-slider.js';
 
 const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
@@ -141,6 +142,7 @@ const activateForm = () => {
     select.removeAttribute('disabled', '');
   }
 
+  initPriceSlider();
   addValidateFormEvents();
 };
 
