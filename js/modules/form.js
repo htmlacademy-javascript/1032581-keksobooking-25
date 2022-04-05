@@ -19,6 +19,7 @@ const resetButton = form.querySelector('.ad-form__reset');
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
+  errorClass: 'AAAAAAA'
 });
 
 /* Validation. Price */
