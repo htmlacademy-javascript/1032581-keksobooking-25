@@ -110,7 +110,7 @@ const removeValidateFormEvents = () => {
 };
 
 /* States */
-const toInactiveState = () => {
+const disableForm = () => {
   form.classList.add('ad-form--disabled');
   filterForm.classList.add('ad-form--disabled');
 
@@ -127,7 +127,7 @@ const toInactiveState = () => {
   removeValidateFormEvents();
 };
 
-const toActiveState = () => {
+const activateForm = () => {
   form.classList.remove('ad-form--disabled');
   filterForm.classList.remove('ad-form--disabled');
 
@@ -144,4 +144,4 @@ const toActiveState = () => {
   addValidateFormEvents();
 };
 
-export {toInactiveState, toActiveState};
+export {disableForm, activateForm};
