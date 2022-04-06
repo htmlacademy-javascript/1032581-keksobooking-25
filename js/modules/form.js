@@ -1,4 +1,5 @@
 import {formOptions} from './form-options.js';
+import {initPriceSlider} from './price-slider.js';
 
 const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
@@ -18,6 +19,7 @@ const resetButton = form.querySelector('.ad-form__reset');
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
+  errorClass: 'AAAAAAA'
 });
 
 /* Validation. Price */
@@ -110,7 +112,7 @@ const removeValidateFormEvents = () => {
 };
 
 /* States */
-const toInactiveState = () => {
+const disableForm = () => {
   form.classList.add('ad-form--disabled');
   filterForm.classList.add('ad-form--disabled');
 
@@ -127,7 +129,7 @@ const toInactiveState = () => {
   removeValidateFormEvents();
 };
 
-const toActiveState = () => {
+const activateForm = () => {
   form.classList.remove('ad-form--disabled');
   filterForm.classList.remove('ad-form--disabled');
 
@@ -141,7 +143,8 @@ const toActiveState = () => {
     select.removeAttribute('disabled', '');
   }
 
+  initPriceSlider();
   addValidateFormEvents();
 };
 
-export {toInactiveState, toActiveState};
+export {disableForm, activateForm};

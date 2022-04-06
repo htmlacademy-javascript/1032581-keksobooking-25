@@ -1,6 +1,5 @@
-import {generateAdvertisingMarkup} from './modules/generate-advertising-markup.js';
-import {toInactiveState, toActiveState} from './modules/form.js';
+import {disableForm} from './modules/form.js';
+import {initMap} from './modules/map.js';
 
-toInactiveState();
-toActiveState();
-generateAdvertisingMarkup();
+disableForm();
+initMap();
