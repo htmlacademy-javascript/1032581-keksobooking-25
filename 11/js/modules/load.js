@@ -5,7 +5,7 @@ const getData = (onSuccess, onError) => {
         return response.json();
       }
 
-      throw new Error(`Ошибка загрузки кексососедей с сервера`);
+      throw new Error('Ошибка загрузки кексососедей с сервера');
     })
     .then((advetrtisment) => {
       onSuccess(advetrtisment);
