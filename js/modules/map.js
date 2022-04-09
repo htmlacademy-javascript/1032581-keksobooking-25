@@ -77,4 +77,4 @@ const renderMap = (advertisements) => {
 
 };
 
-export {renderMap};
+export {renderMap, onStartPoint};

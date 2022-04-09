@@ -1,5 +1,7 @@
 import {formOptions} from './form-options.js';
 import {initPriceSlider} from './price-slider.js';
+import {sendData} from './load.js';
+import {onSuccess, onError} from './state.js';
 
 const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
@@ -13,7 +15,9 @@ const roomNumberField = form.querySelector('#room_number');
 const roomCapacityField = form.querySelector('#capacity');
 const timeInField = form.querySelector('#timein');
 const timeOutField = form.querySelector('#timeout');
+const submitButton = form.querySelector('.ad-form__submit');
 const resetButton = form.querySelector('.ad-form__reset');
+const submitButtonDefaultvalue = submitButton.textContent;
 
 /* Validation */
 const pristine = new Pristine(form, {
@@ -77,17 +81,40 @@ const onTimeInChange = () => {
   timeOutField.value = timeInField.value;
 };
 
+/* Submit button states */
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Опубликовую...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = submitButtonDefaultvalue;
+};
+
 /* Submit form */
 const onSubmitForm = (evt) => {
   evt.preventDefault();
 
   const isValid = pristine.validate();
   if (isValid) {
-    form.submit();
+    blockSubmitButton();
+    sendData(
+      () => {
+        onSuccess();
+        unblockSubmitButton();
+      },
+      () => {
+        onError();
+        unblockSubmitButton();
+      },
+      new FormData(evt.target)
+    );
   }
 };
 
 const onResetForm = () => {
+  form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
 };
 
@@ -146,4 +173,4 @@ const activateStates = () => {
   addValidateFormEvents();
 };
 
-export {deactivateStates, activateStates};
+export {deactivateStates, activateStates, onResetForm};
