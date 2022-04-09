@@ -1,5 +1,3 @@
-import {disableForm} from './modules/form.js';
-import {initMap} from './modules/map.js';
+import {renderMap} from './modules/map.js';
 
-disableForm();
-initMap();
+renderMap();

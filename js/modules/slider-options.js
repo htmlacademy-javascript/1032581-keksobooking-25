@@ -1,7 +1,7 @@
 import {formOptions} from './form-options.js';
 
 const sliderOptions = {
-  flat: {
+  initial: {
     range: {
       min: formOptions.minPrice['flat'],
       max: formOptions.MAX_PRICE_VALUE,
@@ -17,6 +17,13 @@ const sliderOptions = {
         return parseFloat(value);
       },
     }
+  },
+  flat: {
+    range: {
+      min: formOptions.minPrice['flat'],
+      max: formOptions.MAX_PRICE_VALUE,
+    },
+    start: formOptions.minPrice['flat'],
   },
   bungalow: {
     range: {

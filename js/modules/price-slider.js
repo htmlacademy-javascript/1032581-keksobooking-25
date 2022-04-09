@@ -6,7 +6,7 @@ const typeField = document.querySelector('#type');
 
 const initPriceSlider = () => {
   /* Init slider */
-  noUiSlider.create(priceSlider, sliderOptions.flat);
+  noUiSlider.create(priceSlider, sliderOptions.initial);
 
   /* Callbacks */
   const onUpdateValue = () => {

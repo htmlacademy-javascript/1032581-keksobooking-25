@@ -19,7 +19,6 @@ const resetButton = form.querySelector('.ad-form__reset');
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
-  errorClass: 'AAAAAAA'
 });
 
 /* Validation. Price */
@@ -112,7 +111,7 @@ const removeValidateFormEvents = () => {
 };
 
 /* States */
-const disableForm = () => {
+const deactivateStates = () => {
   form.classList.add('ad-form--disabled');
   filterForm.classList.add('ad-form--disabled');
 
@@ -129,7 +128,7 @@ const disableForm = () => {
   removeValidateFormEvents();
 };
 
-const activateForm = () => {
+const activateStates = () => {
   form.classList.remove('ad-form--disabled');
   filterForm.classList.remove('ad-form--disabled');
 
@@ -147,4 +146,4 @@ const activateForm = () => {
   addValidateFormEvents();
 };
 
-export {disableForm, activateForm};
+export {deactivateStates, activateStates};
