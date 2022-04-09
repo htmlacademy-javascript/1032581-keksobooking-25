@@ -1,9 +1,17 @@
+import {showAlert} from './modules/util.js';
 import {renderMap} from './modules/map.js';
 
+fetch('https://25.javascript.pages.academy/keksobooking/data1')
+  .then((response) => {
+    if(response.ok) {
+      return response.json();
+    }
 
-fetch('https://25.javascript.pages.academy/keksobooking/data')
-  .then((response) => response.json())
+    throw new Error(`Ошибка загрузки данных с сервера`);
+  })
   .then((advetrtisment) => {
-    // console.log(advetrtisment);
     renderMap(advetrtisment);
+  })
+  .catch((err) => {
+    showAlert(err);
   });
