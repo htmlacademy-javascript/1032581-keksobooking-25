@@ -1,3 +1,5 @@
+import {arrayIsEmpty} from './array-methods.js';
+
 const housingTypeContainer = document.querySelector('#housing-type');
 const housingTypeList = Array.from(housingTypeContainer.querySelectorAll('option'));
 
@@ -75,10 +77,10 @@ const generateAdvertisingMarkup = (advetrtisment) => {
     timeElement.textContent = `Заезд после ${advetrtisment.offer.checkin}, выезд до ${advetrtisment.offer.checkout}`;
   }
 
-  if (advetrtisment.offer.features.size === 0) {
+  if (arrayIsEmpty(advetrtisment.offer.features)) {
     featureList.remove();
   } else {
-    [...advetrtisment.offer.features].forEach((item) => {
+    advetrtisment.offer.features.forEach((item) => {
       const featureItem = cardElementTemplate.querySelector('.popup__feature').cloneNode();
 
       featureItem.classList.remove(featureItem.classList[1]);
@@ -96,7 +98,7 @@ const generateAdvertisingMarkup = (advetrtisment) => {
     descriptionElement.remove();
   }
 
-  if (advetrtisment.offer.photos.length === 0) {
+  if (arrayIsEmpty(advetrtisment.offer.photos)) {
     photosContainer.remove();
   } else {
     for (const imgSource of advetrtisment.offer.photos) {

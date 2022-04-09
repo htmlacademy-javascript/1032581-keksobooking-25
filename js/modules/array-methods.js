@@ -17,4 +17,6 @@ const getRandomArrayOfStrings = (elements, randomNumber) => {
 
 const getArrayOfStrings = (elements) => elements.slice(0, getRandomInteger(1, elements.length - 1));
 
-export {getRandomArrayElement, getRandomArrayOfStrings, getArrayOfStrings};
+const arrayIsEmpty = (array) => array === undefined || array.length === 0;
+
+export {getRandomArrayElement, getRandomArrayOfStrings, getArrayOfStrings, arrayIsEmpty};

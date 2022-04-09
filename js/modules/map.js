@@ -1,4 +1,3 @@
-import {createSimilarAdvertisements} from './create-advertisements.js';
 import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
 import {activateStates} from './form.js';
 import {mapOptions} from './map-options.js';
@@ -48,8 +47,6 @@ const onMarkerPut = (evt) => {
 mainMarker.on('moveend', onMarkerPut);
 
 /* Render advertisements on map*/
-const advertisements = createSimilarAdvertisements();
-
 const icon = L.icon(mapOptions.icon);
 
 const onStartPoint = () => {
@@ -58,7 +55,7 @@ const onStartPoint = () => {
 
 resetButton.addEventListener('click', onStartPoint);
 
-const renderMap = () => {
+const renderMap = (advertisements) => {
   advertisements.forEach((advertisement) => {
     const lat = advertisement.location.lat;
     const lng = advertisement.location.lng;
