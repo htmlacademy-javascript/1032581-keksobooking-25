@@ -1,5 +1,5 @@
-import {disableForm} from './modules/form.js';
-import {initMap} from './modules/map.js';
+import {showAlert} from './modules/util.js';
+import {getData} from './modules/load.js';
+import {renderMap} from './modules/map.js';
 
-disableForm();
-initMap();
+getData(renderMap, showAlert);

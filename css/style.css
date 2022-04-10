@@ -1037,6 +1037,39 @@ fieldset {
   font-size: 12px;
 }
 
+/**
+ * Сообщения об неуспешной загрузке данных
+ */
+
+.alert {
+  z-index: 1000;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+}
+
+.alert__message {
+  font-size: 14px;
+  text-align: center;
+  margin: 6px 0;
+}
+
+.alert__close {
+  font-size: 14px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid white;
+}
+.alert__close:hover {
+  opacity: 0.8;
+}
+
 .visually-hidden {
   position: absolute;
 
