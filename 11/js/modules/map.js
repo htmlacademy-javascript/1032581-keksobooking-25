@@ -49,11 +49,15 @@ mainMarker.on('moveend', onMarkerPut);
 /* Render advertisements on map*/
 const icon = L.icon(mapOptions.icon);
 
-const onStartPoint = () => {
+const setStartPoint = () => {
   mainMarker.setLatLng(mapOptions.initLocation);
 };
 
-resetButton.addEventListener('click', onStartPoint);
+const onResetButtonClick = () => {
+  setStartPoint();
+};
+
+resetButton.addEventListener('click', onResetButtonClick);
 
 const renderMap = (advertisements) => {
   advertisements.forEach((advertisement) => {
@@ -77,4 +81,4 @@ const renderMap = (advertisements) => {
 
 };
 
-export {renderMap, onStartPoint};
+export {renderMap, setStartPoint};

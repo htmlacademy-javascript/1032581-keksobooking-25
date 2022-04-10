@@ -1,11 +1,11 @@
 import {openModal} from './modal.js';
-import {onResetForm} from './form.js';
-import {onStartPoint} from './map.js';
+import {resetForm} from './form.js';
+import {setStartPoint} from './map.js';
 
 const onSuccess = () => {
   openModal('success');
-  onResetForm();
-  onStartPoint();
+  resetForm();
+  setStartPoint();
 };
 
 const onError = () => {
