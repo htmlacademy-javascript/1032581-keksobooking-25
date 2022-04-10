@@ -2,6 +2,7 @@ import {formOptions} from './form-options.js';
 import {initPriceSlider} from './price-slider.js';
 import {sendData} from './load.js';
 import {onSuccess, onError} from './state.js';
+import {setStartPoint} from './map.js';
 
 const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
@@ -116,6 +117,7 @@ const onSubmitForm = (evt) => {
 const resetForm = () => {
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
+  setStartPoint();
 };
 
 const onResetButtonClick = () => {

@@ -3,7 +3,6 @@ import {activateStates} from './form.js';
 import {mapOptions} from './map-options.js';
 
 const addressField = document.querySelector('#address');
-const resetButton = document.querySelector('.ad-form__reset');
 
 /* Init map */
 const map = L.map('map-canvas')
@@ -52,12 +51,6 @@ const icon = L.icon(mapOptions.icon);
 const setStartPoint = () => {
   mainMarker.setLatLng(mapOptions.initLocation);
 };
-
-const onResetButtonClick = () => {
-  setStartPoint();
-};
-
-resetButton.addEventListener('click', onResetButtonClick);
 
 const renderMap = (advertisements) => {
   advertisements.forEach((advertisement) => {
