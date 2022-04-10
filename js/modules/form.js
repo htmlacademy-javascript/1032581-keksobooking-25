@@ -113,9 +113,13 @@ const onSubmitForm = (evt) => {
   }
 };
 
-const onResetForm = () => {
+const resetForm = () => {
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
+};
+
+const onResetButtonClick = () => {
+  resetForm();
 };
 
 /* Events */
@@ -125,7 +129,7 @@ const addValidateFormEvents = () => {
   timeOutField.addEventListener('change', onTimeOutChange);
   timeInField.addEventListener('change', onTimeInChange);
   form.addEventListener('submit', onSubmitForm);
-  resetButton.addEventListener('click', onResetForm);
+  resetButton.addEventListener('click', onResetButtonClick);
 };
 
 const removeValidateFormEvents = () => {
@@ -134,7 +138,7 @@ const removeValidateFormEvents = () => {
   timeOutField.removeEventListener('change', onTimeOutChange);
   timeInField.removeEventListener('change', onTimeInChange);
   form.removeEventListener('submit', onSubmitForm);
-  resetButton.addEventListener('click', onResetForm);
+  resetButton.removeEventListener('click', onResetButtonClick);
 };
 
 /* States */
@@ -173,4 +177,4 @@ const activateStates = () => {
   addValidateFormEvents();
 };
 
-export {deactivateStates, activateStates, onResetForm};
+export {deactivateStates, activateStates, resetForm};

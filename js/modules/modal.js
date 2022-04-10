@@ -3,18 +3,26 @@ const openModal = (state) => {
     .content
     .querySelector(`.${state}`);
   const element = elementTemplate.cloneNode(true);
-  const onRemoveElement = () => {
-    element.remove();
-  };
 
   document.body.append(element);
 
-  element.addEventListener('click', onRemoveElement);
-  document.addEventListener('keydown', (evt) => {
+  const removeElement = () => {
+    element.remove();
+  };
+
+  const onElementAreaClick = () => {
+    removeElement();
+  };
+
+  const onElementAreaKeydown = (evt) => {
     if (evt.key === 'Escape') {
-      onRemoveElement();
+      removeElement();
+      document.removeEventListener('keydown', onElementAreaKeydown);
     }
-  });
+  };
+
+  element.addEventListener('click', onElementAreaClick);
+  document.addEventListener('keydown', onElementAreaKeydown);
 };
 
 export {openModal};
