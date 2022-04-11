@@ -5,10 +5,7 @@ import {onSendSuccess, onSendError} from './state.js';
 import {setStartPoint} from './map.js';
 
 const form = document.querySelector('.ad-form');
-const filterForm = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
-const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
-const filterFormSelects = filterForm.querySelectorAll('.map__filter');
 const priceField = form.querySelector('#price');
 const defaultPriceValue = priceField.getAttribute('placeholder');
 const typeField = form.querySelector('#type');
@@ -154,28 +151,6 @@ const deactivateForm = () => {
   removeValidateFormEvents();
 };
 
-const deactivateFilter = () => {
-  filterForm.classList.add('ad-form--disabled');
-
-  for(const fieldset of filterFormFieldsets) {
-    fieldset.setAttribute('disabled', '');
-  }
-  for(const select of filterFormSelects) {
-    select.setAttribute('disabled', '');
-  }
-};
-
-const activateFilter = () => {
-  filterForm.classList.remove('ad-form--disabled');
-
-  for(const fieldset of filterFormFieldsets) {
-    fieldset.removeAttribute('disabled');
-  }
-  for(const select of filterFormSelects) {
-    select.removeAttribute('disabled', '');
-  }
-};
-
 const activateForm = () => {
   form.classList.remove('ad-form--disabled');
 
@@ -187,4 +162,4 @@ const activateForm = () => {
   addValidateFormEvents();
 };
 
-export {activateForm, activateFilter, deactivateForm, deactivateFilter, resetForm};
+export {activateForm, deactivateForm, resetForm};
