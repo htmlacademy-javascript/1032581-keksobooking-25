@@ -1,5 +1,5 @@
 import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
-import {activateStates} from './form.js';
+import {activateForm, activateFilter} from './form.js';
 import {mapOptions} from './map-options.js';
 
 const addressField = document.querySelector('#address');
@@ -7,7 +7,8 @@ const addressField = document.querySelector('#address');
 /* Init map */
 const map = L.map('map-canvas')
   .on('load', () => {
-    activateStates();
+    activateForm();
+    activateFilter();
   })
   .setView(mapOptions.initLocation, 12);
 

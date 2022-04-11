@@ -1,7 +1,7 @@
 import {formOptions} from './form-options.js';
 import {initPriceSlider} from './price-slider.js';
 import {sendData} from './load.js';
-import {onSuccess, onError} from './state.js';
+import {onSendSuccess, onSendError} from './state.js';
 import {setStartPoint} from './map.js';
 
 const form = document.querySelector('.ad-form');
@@ -102,11 +102,11 @@ const onSubmitForm = (evt) => {
     blockSubmitButton();
     sendData(
       () => {
-        onSuccess();
+        onSendSuccess();
         unblockSubmitButton();
       },
       () => {
-        onError();
+        onSendError();
         unblockSubmitButton();
       },
       new FormData(evt.target)
@@ -144,39 +144,47 @@ const removeValidateFormEvents = () => {
 };
 
 /* States */
-const deactivateStates = () => {
+const deactivateForm = () => {
   form.classList.add('ad-form--disabled');
-  filterForm.classList.add('ad-form--disabled');
 
   for(const fieldset of formFieldsets) {
     fieldset.setAttribute('disabled', '');
   }
+
+  removeValidateFormEvents();
+};
+
+const deactivateFilter = () => {
+  filterForm.classList.add('ad-form--disabled');
+
   for(const fieldset of filterFormFieldsets) {
     fieldset.setAttribute('disabled', '');
   }
   for(const select of filterFormSelects) {
     select.setAttribute('disabled', '');
   }
-
-  removeValidateFormEvents();
 };
 
-const activateStates = () => {
-  form.classList.remove('ad-form--disabled');
+const activateFilter = () => {
   filterForm.classList.remove('ad-form--disabled');
 
-  for(const fieldset of formFieldsets) {
-    fieldset.removeAttribute('disabled');
-  }
   for(const fieldset of filterFormFieldsets) {
     fieldset.removeAttribute('disabled');
   }
   for(const select of filterFormSelects) {
     select.removeAttribute('disabled', '');
   }
+};
+
+const activateForm = () => {
+  form.classList.remove('ad-form--disabled');
+
+  for(const fieldset of formFieldsets) {
+    fieldset.removeAttribute('disabled');
+  }
 
   initPriceSlider();
   addValidateFormEvents();
 };
 
-export {deactivateStates, activateStates, resetForm};
+export {activateForm, activateFilter, deactivateForm, deactivateFilter, resetForm};

@@ -1,4 +1,4 @@
-import {arrayIsEmpty} from './array-methods.js';
+import {arrayIsEmpty} from './util.js';
 
 const housingTypeContainer = document.querySelector('#housing-type');
 const housingTypeList = Array.from(housingTypeContainer.querySelectorAll('option'));
@@ -115,4 +115,4 @@ const generateAdvertisingMarkup = (advetrtisment) => {
 
 };
 
-export {generateAdvertisingMarkup, getHousingTypeTextValue};
+export {generateAdvertisingMarkup};

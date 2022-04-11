@@ -1,13 +1,13 @@
 import {openModal} from './modal.js';
 import {resetForm} from './form.js';
 
-const onSuccess = () => {
+const onSendSuccess = () => {
   openModal('success');
   resetForm();
 };
 
-const onError = () => {
+const onSendError = () => {
   openModal('error');
 };
 
-export {onSuccess, onError};
+export {onSendSuccess, onSendError};

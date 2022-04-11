@@ -1,21 +1,20 @@
-const getData = (onSuccess, onError) => {
+const getData = (onGetSuccess, onGetError) => {
   fetch('https://25.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if(response.ok) {
         return response.json();
       }
-
-      throw new Error('Ошибка загрузки кексососедей с сервера');
+      throw new Error();
     })
     .then((advetrtisment) => {
-      onSuccess(advetrtisment);
+      onGetSuccess(advetrtisment);
     })
-    .catch((err) => {
-      onError(err);
+    .catch(() => {
+      onGetError();
     });
 };
 
-const sendData = (onSuccess, onError, body) => {
+const sendData = (onSendSuccess, onSendError, body) => {
   fetch(
     'https://25.javascript.pages.academy/keksobooking',
     {
@@ -26,13 +25,13 @@ const sendData = (onSuccess, onError, body) => {
   )
     .then((response) => {
       if (response.ok) {
-        onSuccess();
+        onSendSuccess();
       } else {
         throw new Error();
       }
     })
     .catch(() => {
-      onError();
+      onSendError();
     });
 };
 
