@@ -2,6 +2,7 @@ import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
 import {activateForm, activateFilter} from './form.js';
 import {mapOptions} from './map-options.js';
 
+const COUNT_SHOWED_ADVS = 10;
 const addressField = document.querySelector('#address');
 
 /* Init map */
@@ -54,24 +55,26 @@ const setStartPoint = () => {
 };
 
 const renderMap = (advertisements) => {
-  advertisements.forEach((advertisement) => {
-    const lat = advertisement.location.lat;
-    const lng = advertisement.location.lng;
+  advertisements
+    .slice(0, COUNT_SHOWED_ADVS)
+    .forEach((advertisement) => {
+      const lat = advertisement.location.lat;
+      const lng = advertisement.location.lng;
 
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon,
-      },
-    );
+      const marker = L.marker(
+        {
+          lat,
+          lng,
+        },
+        {
+          icon,
+        },
+      );
 
-    marker
-      .addTo(map)
-      .bindPopup(generateAdvertisingMarkup(advertisement));
-  });
+      marker
+        .addTo(map)
+        .bindPopup(generateAdvertisingMarkup(advertisement));
+    });
 
 };
 
