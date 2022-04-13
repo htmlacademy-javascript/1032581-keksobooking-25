@@ -1,6 +1,6 @@
 import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
 import {activateForm} from './form.js';
-import {activateFilter} from './filter.js';
+import {activateFilter, filterData} from './filter.js';
 import {mapOptions} from './map-options.js';
 
 const COUNT_SHOWED_ADVS = 10;
@@ -57,6 +57,7 @@ const setStartPoint = () => {
 
 const renderMap = (advertisements) => {
   advertisements
+    .filter(filterData)
     .slice(0, COUNT_SHOWED_ADVS)
     .forEach((advertisement) => {
       const lat = advertisement.location.lat;
@@ -76,7 +77,6 @@ const renderMap = (advertisements) => {
         .addTo(map)
         .bindPopup(generateAdvertisingMarkup(advertisement));
     });
-
 };
 
 export {renderMap, setStartPoint};

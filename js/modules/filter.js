@@ -2,6 +2,7 @@ const filterForm = document.querySelector('.map__filters');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
 const filterFormSelects = filterForm.querySelectorAll('.map__filter');
 
+const filterData = (advertisements) => advertisements.offer.type === 'house';
 
 /* States */
 const deactivateFilter = () => {
@@ -26,4 +27,4 @@ const activateFilter = () => {
   }
 };
 
-export {activateFilter, deactivateFilter};
+export {activateFilter, deactivateFilter, filterData};
