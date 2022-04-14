@@ -1,4 +1,5 @@
 import {formOptions} from './form-options.js';
+import {previewImage} from './image-preview.js';
 import {initPriceSlider} from './price-slider.js';
 import {sendData} from './load.js';
 import {onSendSuccess, onSendError} from './state.js';
@@ -16,6 +17,10 @@ const timeOutField = form.querySelector('#timeout');
 const submitButton = form.querySelector('.ad-form__submit');
 const resetButton = form.querySelector('.ad-form__reset');
 const submitButtonDefaultvalue = submitButton.textContent;
+const avatarImage = form.querySelector('.ad-form-header__preview img');
+const photoImageContainer = form.querySelector('.ad-form__photo');
+
+const DEFAULT_AVATAR_SRC = avatarImage.src;
 
 /* Validation */
 const pristine = new Pristine(form, {
@@ -111,10 +116,19 @@ const onSubmitForm = (evt) => {
   }
 };
 
+const resetImageSrc = () => {
+  avatarImage.src = DEFAULT_AVATAR_SRC;
+
+  if (photoImageContainer.childNodes.length) {
+    photoImageContainer.innerHTML = '';
+  }
+};
+
 const resetForm = () => {
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
   setStartPoint();
+  resetImageSrc();
 };
 
 const onResetButtonClick = () => {
@@ -159,6 +173,8 @@ const activateForm = () => {
   }
 
   initPriceSlider();
+  previewImage('avatar', 'ad-form-header__preview');
+  previewImage('images', 'ad-form__photo');
   addValidateFormEvents();
 };
 

@@ -56,7 +56,7 @@ const activateFilter = (advertisements) => {
 
     const featuresInputList = filterForm.querySelectorAll('#housing-features input[name="features"]:checked');
 
-    if (featuresInputList.length > 0) {
+    if (featuresInputList.length) {
       featuresInputList.forEach((element) => {
         filteredAdvertisements = filteredAdvertisements.filter((item) => {
           if (item.offer.features) {

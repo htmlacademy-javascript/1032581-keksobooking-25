@@ -9,12 +9,13 @@ const previewImage = (inputFileID, imageContainerClass) => {
     const file = fileChooseInput.files[0];
     const fileName = file.name.toLowerCase();
 
-    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
 
     if (matches) {
       if (imagePreview) {
         imagePreview.src = URL.createObjectURL(file);
       } else {
+        imageContainer.innerHTML = '';
         const imageElement = document.createElement('img');
         imageElement.title = fileName;
         imageElement.src = URL.createObjectURL(file);
@@ -25,5 +26,4 @@ const previewImage = (inputFileID, imageContainerClass) => {
   });
 };
 
-previewImage('avatar', 'ad-form-header__preview');
-previewImage('images', 'ad-form__photo');
+export { previewImage };
