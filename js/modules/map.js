@@ -1,25 +1,16 @@
 import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
 import {activateForm} from './form.js';
-import {activateFilter, filterData} from './filter.js';
+import {activateFilter} from './filter.js';
 import {mapOptions} from './map-options.js';
+import {getData} from './load.js';
+import {showAlert} from './util.js';
 
 const COUNT_SHOWED_ADVS = 10;
 const addressField = document.querySelector('#address');
+const DATA_ERROR_MESSAGE = 'Ошибка загрузки кексососедей с сервера';
 
-/* Init map */
-const map = L.map('map-canvas')
-  .on('load', () => {
-    activateForm();
-    activateFilter();
-  })
-  .setView(mapOptions.initLocation, 12);
-
-L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  },
-).addTo(map);
+/* Create map */
+const map = L.map('map-canvas');
 
 /* Add marker */
 const mainPinIcon = L.icon(mapOptions.mainPinIcon);
@@ -32,6 +23,9 @@ const mainMarker = L.marker(
   }
 );
 mainMarker.addTo(map);
+
+/* Add marker group */
+const markerGroup = L.layerGroup().addTo(map);
 
 /* Get Main marker position */
 const updateMainMarkerPosition = (lat, lng) => {
@@ -56,8 +50,8 @@ const setStartPoint = () => {
 };
 
 const renderMap = (advertisements) => {
+  markerGroup.clearLayers();
   advertisements
-    .filter(filterData)
     .slice(0, COUNT_SHOWED_ADVS)
     .forEach((advertisement) => {
       const lat = advertisement.location.lat;
@@ -74,9 +68,32 @@ const renderMap = (advertisements) => {
       );
 
       marker
-        .addTo(map)
+        .addTo(markerGroup)
         .bindPopup(generateAdvertisingMarkup(advertisement));
     });
 };
 
-export {renderMap, setStartPoint};
+const initMap = () => {
+  map.on('load', () => {
+    activateForm();
+    getData(
+      (advertisements) => {
+        renderMap(advertisements);
+        activateFilter(advertisements);
+      },
+      () => {
+        showAlert(DATA_ERROR_MESSAGE);
+      }
+    );
+  })
+    .setView(mapOptions.initLocation, 12);
+
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    },
+  ).addTo(map);
+};
+
+export {initMap, renderMap, setStartPoint};
