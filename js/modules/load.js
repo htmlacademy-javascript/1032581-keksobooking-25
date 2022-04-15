@@ -35,4 +35,4 @@ const sendData = (onSendSuccess, onSendError, body) => {
     });
 };
 
-export {getData, sendData};
+export { getData, sendData };

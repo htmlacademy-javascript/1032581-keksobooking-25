@@ -1,5 +1,5 @@
-import {openModal} from './modal.js';
-import {resetForm} from './form.js';
+import { openModal } from './modal.js';
+import { resetForm } from './form.js';
 
 const onSendSuccess = () => {
   openModal('success');
@@ -10,4 +10,4 @@ const onSendError = () => {
   openModal('error');
 };
 
-export {onSendSuccess, onSendError};
+export { onSendSuccess, onSendError };

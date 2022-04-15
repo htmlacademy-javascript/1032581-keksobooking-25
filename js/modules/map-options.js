@@ -15,4 +15,4 @@ const mapOptions = {
   },
 };
 
-export {mapOptions};
+export { mapOptions };

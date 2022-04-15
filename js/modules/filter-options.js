@@ -13,4 +13,4 @@ const priceOptions = {
   },
 };
 
-export {priceOptions};
+export { priceOptions };
