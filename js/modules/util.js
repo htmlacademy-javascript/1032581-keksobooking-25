@@ -20,4 +20,13 @@ const showAlert = (message) => {
   document.body.append(alertContainer);
 };
 
-export {showAlert, arrayIsEmpty};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {showAlert, arrayIsEmpty, debounce};
