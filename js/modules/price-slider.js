@@ -1,35 +1,39 @@
-import {sliderOptions} from './slider-options.js';
+import { sliderOptions } from './slider-options.js';
 
 const priceSlider = document.querySelector('.ad-form__slider');
 const priceField = document.querySelector('#price');
 const typeField = document.querySelector('#type');
 
-const initPriceSlider = () => {
-  /* Init slider */
-  noUiSlider.create(priceSlider, sliderOptions.initial);
+/* Create slider */
+noUiSlider.create(priceSlider, sliderOptions.initial);
 
+const initPriceSlider = () => {
   /* Callbacks */
-  const onUpdateValue = () => {
+  const onSliderUpdate = () => {
     priceField.value = priceSlider.noUiSlider.get();
   };
 
-  const onUpdateTypeOption = () => {
+  const onTypeFieldChange = () => {
     const currentValue = typeField.value;
     priceSlider.noUiSlider.updateOptions(sliderOptions[currentValue]);
   };
 
-  const onInputChange = () => {
+  const onPriceFieldBlur = () => {
     priceSlider.noUiSlider.set(priceField.value);
   };
 
   /* Events */
   const initSliderEvents = () => {
-    priceSlider.noUiSlider.on('update', onUpdateValue);
-    typeField.addEventListener('change', onUpdateTypeOption);
-    priceField.addEventListener('blur', onInputChange);
+    priceSlider.noUiSlider.on('update', onSliderUpdate);
+    typeField.addEventListener('change', onTypeFieldChange);
+    priceField.addEventListener('blur', onPriceFieldBlur);
   };
 
   initSliderEvents();
 };
 
-export {initPriceSlider};
+const resetPriceSlider = () => {
+  priceSlider.noUiSlider.set(sliderOptions.initial.start);
+};
+
+export { initPriceSlider, resetPriceSlider };

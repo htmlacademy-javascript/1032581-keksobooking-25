@@ -25,4 +25,4 @@ const openModal = (state) => {
   document.addEventListener('keydown', onElementAreaKeydown);
 };
 
-export {openModal};
+export { openModal };

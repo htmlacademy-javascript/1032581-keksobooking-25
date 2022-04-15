@@ -1,5 +1,8 @@
-import {showAlert} from './modules/util.js';
-import {getData} from './modules/load.js';
-import {renderMap} from './modules/map.js';
+import { deactivateForm } from './modules/form.js';
+import { deactivateFilter } from './modules/filter.js';
+import { initMap } from './modules/map.js';
 
-getData(renderMap, showAlert);
+deactivateForm();
+deactivateFilter();
+
+initMap();

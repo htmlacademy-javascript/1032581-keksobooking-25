@@ -1,14 +1,13 @@
 import {formOptions} from './form-options.js';
-import {initPriceSlider} from './price-slider.js';
-import {sendData} from './load.js';
-import {onSuccess, onError} from './state.js';
-import {setStartPoint} from './map.js';
+import { previewImage } from './image-preview.js';
+import { initPriceSlider, resetPriceSlider } from './price-slider.js';
+import { sendData } from './load.js';
+import { resetFilter } from './filter.js';
+import { onSendSuccess, onSendError } from './state.js';
+import { setStartPoint } from './map.js';
 
 const form = document.querySelector('.ad-form');
-const filterForm = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
-const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
-const filterFormSelects = filterForm.querySelectorAll('.map__filter');
 const priceField = form.querySelector('#price');
 const defaultPriceValue = priceField.getAttribute('placeholder');
 const typeField = form.querySelector('#type');
@@ -19,6 +18,10 @@ const timeOutField = form.querySelector('#timeout');
 const submitButton = form.querySelector('.ad-form__submit');
 const resetButton = form.querySelector('.ad-form__reset');
 const submitButtonDefaultvalue = submitButton.textContent;
+const avatarImage = form.querySelector('.ad-form-header__preview img');
+const photoImageContainer = form.querySelector('.ad-form__photo');
+
+const DEFAULT_AVATAR_SRC = avatarImage.src;
 
 /* Validation */
 const pristine = new Pristine(form, {
@@ -102,11 +105,11 @@ const onSubmitForm = (evt) => {
     blockSubmitButton();
     sendData(
       () => {
-        onSuccess();
+        onSendSuccess();
         unblockSubmitButton();
       },
       () => {
-        onError();
+        onSendError();
         unblockSubmitButton();
       },
       new FormData(evt.target)
@@ -114,14 +117,26 @@ const onSubmitForm = (evt) => {
   }
 };
 
+const resetImageSrc = () => {
+  avatarImage.src = DEFAULT_AVATAR_SRC;
+
+  if (photoImageContainer.childNodes.length) {
+    photoImageContainer.innerHTML = '';
+  }
+};
+
 const resetForm = () => {
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
+  pristine.reset();
   setStartPoint();
+  resetImageSrc();
+  resetPriceSlider();
 };
 
 const onResetButtonClick = () => {
   resetForm();
+  resetFilter();
 };
 
 /* Events */
@@ -144,39 +159,27 @@ const removeValidateFormEvents = () => {
 };
 
 /* States */
-const deactivateStates = () => {
+const deactivateForm = () => {
   form.classList.add('ad-form--disabled');
-  filterForm.classList.add('ad-form--disabled');
 
   for(const fieldset of formFieldsets) {
     fieldset.setAttribute('disabled', '');
-  }
-  for(const fieldset of filterFormFieldsets) {
-    fieldset.setAttribute('disabled', '');
-  }
-  for(const select of filterFormSelects) {
-    select.setAttribute('disabled', '');
   }
 
   removeValidateFormEvents();
 };
 
-const activateStates = () => {
+const activateForm = () => {
   form.classList.remove('ad-form--disabled');
-  filterForm.classList.remove('ad-form--disabled');
 
   for(const fieldset of formFieldsets) {
     fieldset.removeAttribute('disabled');
   }
-  for(const fieldset of filterFormFieldsets) {
-    fieldset.removeAttribute('disabled');
-  }
-  for(const select of filterFormSelects) {
-    select.removeAttribute('disabled', '');
-  }
 
   initPriceSlider();
+  previewImage('avatar', 'ad-form-header__preview');
+  previewImage('images', 'ad-form__photo');
   addValidateFormEvents();
 };
 
-export {deactivateStates, activateStates, resetForm};
+export { activateForm, deactivateForm, resetForm };
