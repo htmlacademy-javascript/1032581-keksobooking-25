@@ -1,7 +1,8 @@
 import {formOptions} from './form-options.js';
 import {previewImage} from './image-preview.js';
-import {initPriceSlider} from './price-slider.js';
+import {initPriceSlider, resetPriceSlider} from './price-slider.js';
 import {sendData} from './load.js';
+import {resetFilter} from './filter.js';
 import {onSendSuccess, onSendError} from './state.js';
 import {setStartPoint} from './map.js';
 
@@ -127,12 +128,15 @@ const resetImageSrc = () => {
 const resetForm = () => {
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
+  pristine.reset();
   setStartPoint();
   resetImageSrc();
+  resetPriceSlider();
 };
 
 const onResetButtonClick = () => {
   resetForm();
+  resetFilter();
 };
 
 /* Events */

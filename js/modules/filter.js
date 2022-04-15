@@ -71,4 +71,8 @@ const activateFilter = (advertisements) => {
   });
 };
 
-export {activateFilter, deactivateFilter};
+const resetFilter = () => {
+  filterForm.reset();
+};
+
+export {activateFilter, deactivateFilter, resetFilter};

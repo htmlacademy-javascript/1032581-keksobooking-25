@@ -4,10 +4,10 @@ const priceSlider = document.querySelector('.ad-form__slider');
 const priceField = document.querySelector('#price');
 const typeField = document.querySelector('#type');
 
-const initPriceSlider = () => {
-  /* Init slider */
-  noUiSlider.create(priceSlider, sliderOptions.initial);
+/* Create slider */
+noUiSlider.create(priceSlider, sliderOptions.initial);
 
+const initPriceSlider = () => {
   /* Callbacks */
   const onUpdateValue = () => {
     priceField.value = priceSlider.noUiSlider.get();
@@ -32,4 +32,8 @@ const initPriceSlider = () => {
   initSliderEvents();
 };
 
-export {initPriceSlider};
+const resetPriceSlider = () => {
+  priceSlider.noUiSlider.set(sliderOptions.initial.start);
+};
+
+export { initPriceSlider, resetPriceSlider };

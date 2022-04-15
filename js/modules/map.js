@@ -6,8 +6,9 @@ import {getData} from './load.js';
 import {showAlert} from './util.js';
 
 const COUNT_SHOWED_ADVS = 10;
-const addressField = document.querySelector('#address');
 const DATA_ERROR_MESSAGE = 'Ошибка загрузки кексососедей с сервера';
+
+const addressField = document.querySelector('#address');
 
 /* Create map */
 const map = L.map('map-canvas');
@@ -47,6 +48,7 @@ const icon = L.icon(mapOptions.icon);
 
 const setStartPoint = () => {
   mainMarker.setLatLng(mapOptions.initLocation);
+  map.closePopup();
 };
 
 const renderMap = (advertisements) => {
