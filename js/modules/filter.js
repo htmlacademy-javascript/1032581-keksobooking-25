@@ -8,6 +8,7 @@ const roomsField = filterForm.querySelector('#housing-rooms');
 const guestsField = filterForm.querySelector('#housing-guests');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
 const filterFormSelects = filterForm.querySelectorAll('.map__filter');
+const resetButton = document.querySelector('.ad-form__reset');
 
 const DEFAULT_FILTER_VALUE = 'any';
 
@@ -69,6 +70,11 @@ const activateFilter = (advertisements) => {
 
     renderMap(filteredAdvertisements);
   });
+
+  resetButton.addEventListener('click', () => {
+    renderMap(advertisements);
+  });
+
 };
 
 const resetFilter = () => {
