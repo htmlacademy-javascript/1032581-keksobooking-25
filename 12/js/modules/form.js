@@ -1,10 +1,10 @@
 import {formOptions} from './form-options.js';
-import {previewImage} from './image-preview.js';
-import {initPriceSlider, resetPriceSlider} from './price-slider.js';
-import {sendData} from './load.js';
-import {resetFilter} from './filter.js';
-import {onSendSuccess, onSendError} from './state.js';
-import {setStartPoint} from './map.js';
+import { previewImage } from './image-preview.js';
+import { initPriceSlider, resetPriceSlider } from './price-slider.js';
+import { sendData } from './load.js';
+import { resetFilter } from './filter.js';
+import { onSendSuccess, onSendError } from './state.js';
+import { setStartPoint } from './map.js';
 
 const form = document.querySelector('.ad-form');
 const formFieldsets = form.querySelectorAll('fieldset');
@@ -182,4 +182,4 @@ const activateForm = () => {
   addValidateFormEvents();
 };
 
-export {activateForm, deactivateForm, resetForm};
+export { activateForm, deactivateForm, resetForm };

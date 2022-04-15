@@ -1,5 +1,6 @@
-import {renderMap} from './map.js';
-import {priceOptions} from './filter-options.js';
+import { renderMap } from './map.js';
+import { priceOptions } from './filter-options.js';
+import { debounce } from './util.js';
 
 const filterForm = document.querySelector('.map__filters');
 const typeField = filterForm.querySelector('#housing-type');
@@ -8,8 +9,10 @@ const roomsField = filterForm.querySelector('#housing-rooms');
 const guestsField = filterForm.querySelector('#housing-guests');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
 const filterFormSelects = filterForm.querySelectorAll('.map__filter');
+const resetButton = document.querySelector('.ad-form__reset');
 
 const DEFAULT_FILTER_VALUE = 'any';
+const FILTER_CHANGE_DELAY = 500;
 
 /* States */
 const deactivateFilter = () => {
@@ -33,7 +36,7 @@ const activateFilter = (advertisements) => {
     select.removeAttribute('disabled', '');
   }
 
-  filterForm.addEventListener('change', () => {
+  const filterData = () => {
     let filteredAdvertisements = advertisements.slice();
 
     if (typeField.value !== DEFAULT_FILTER_VALUE) {
@@ -68,11 +71,20 @@ const activateFilter = (advertisements) => {
     }
 
     renderMap(filteredAdvertisements);
+  };
+
+  const onFilterChange = debounce(() => filterData(), FILTER_CHANGE_DELAY);
+
+  filterForm.addEventListener('change', onFilterChange);
+
+  resetButton.addEventListener('click', () => {
+    renderMap(advertisements);
   });
+
 };
 
 const resetFilter = () => {
   filterForm.reset();
 };
 
-export {activateFilter, deactivateFilter, resetFilter};
+export { activateFilter, deactivateFilter, resetFilter };

@@ -1,11 +1,12 @@
-import {generateAdvertisingMarkup} from './generate-advertising-markup.js';
-import {activateForm} from './form.js';
-import {activateFilter} from './filter.js';
-import {mapOptions} from './map-options.js';
-import {getData} from './load.js';
-import {showAlert} from './util.js';
+import { generateAdvertisingMarkup } from './generate-advertising-markup.js';
+import { activateForm } from './form.js';
+import { activateFilter } from './filter.js';
+import { mapOptions } from './map-options.js';
+import { getData } from './load.js';
+import { showAlert } from './util.js';
 
 const COUNT_SHOWED_ADVS = 10;
+const MAP_ZOOM_VALUE = 12;
 const DATA_ERROR_MESSAGE = 'Ошибка загрузки кексососедей с сервера';
 
 const addressField = document.querySelector('#address');
@@ -33,7 +34,7 @@ const updateMainMarkerPosition = (lat, lng) => {
   addressField.value = `${lat}, ${lng}`;
 };
 
-const onMarkerPut = (evt) => {
+const onMarkerMoveend = (evt) => {
   const markerPosition = evt.target.getLatLng();
   const markerPositionLat = markerPosition.lat.toFixed(5);
   const markerPositionLng = markerPosition.lng.toFixed(5);
@@ -41,7 +42,7 @@ const onMarkerPut = (evt) => {
   updateMainMarkerPosition(markerPositionLat, markerPositionLng);
 };
 
-mainMarker.on('moveend', onMarkerPut);
+mainMarker.on('moveend', onMarkerMoveend);
 
 /* Render advertisements on map*/
 const icon = L.icon(mapOptions.icon);
@@ -88,7 +89,7 @@ const initMap = () => {
       }
     );
   })
-    .setView(mapOptions.initLocation, 12);
+    .setView(mapOptions.initLocation, MAP_ZOOM_VALUE);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -98,4 +99,4 @@ const initMap = () => {
   ).addTo(map);
 };
 
-export {initMap, renderMap, setStartPoint};
+export { initMap, renderMap, setStartPoint };

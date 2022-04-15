@@ -1,4 +1,4 @@
-import {formOptions} from './form-options.js';
+import { formOptions } from './form-options.js';
 
 const sliderOptions = {
   initial: {
@@ -55,4 +55,4 @@ const sliderOptions = {
   },
 };
 
-export {sliderOptions};
+export { sliderOptions };
