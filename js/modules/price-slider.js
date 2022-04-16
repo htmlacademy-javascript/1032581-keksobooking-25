@@ -15,7 +15,15 @@ const initPriceSlider = () => {
 
   const onTypeFieldChange = () => {
     const currentValue = typeField.value;
-    priceSlider.noUiSlider.updateOptions(sliderOptions[currentValue]);
+    let currentPrice = priceField.value;
+
+    if (!currentPrice) {
+      priceField.value = '';
+    } else {
+      currentPrice = priceField.value;
+      priceSlider.noUiSlider.updateOptions(sliderOptions[currentValue]);
+      priceField.value = currentPrice;
+    }
   };
 
   const onPriceFieldBlur = () => {

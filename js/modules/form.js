@@ -1,5 +1,5 @@
 import { formOptions } from '../options/form-options.js';
-import { previewImage } from './image-preview.js';
+import { createImagePreview } from './image-preview.js';
 import { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider } from './price-slider.js';
 import { sendData } from './load.js';
 import { resetFilter } from './filter.js';
@@ -61,19 +61,19 @@ const returnCapacityErrorMessage = () => {
   return `${roomNumberFieldSelectedText} — ${roomNumberFieldValue}`;
 };
 
-const onRoomCapacityChange = () => {
-  pristine.validate(roomNumberField);
+const onRoomNumberChange = () => {
+  pristine.validate(roomCapacityField);
 };
 
 pristine.addValidator (
   roomNumberField,
-  validateCapacity,
-  returnCapacityErrorMessage
+  validateCapacity
 );
 
 pristine.addValidator (
   roomCapacityField,
-  validateCapacity
+  validateCapacity,
+  returnCapacityErrorMessage
 );
 
 /* Time fields synchronization */
@@ -128,12 +128,12 @@ const resetImageSrc = () => {
 };
 
 const resetForm = () => {
+  pristine.reset();
+  resetPriceSlider();
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
-  pristine.reset();
   setStartPoint();
   resetImageSrc();
-  resetPriceSlider();
 };
 
 const onResetButtonClick = () => {
@@ -144,7 +144,7 @@ const onResetButtonClick = () => {
 /* Events */
 const addValidateFormEvents = () => {
   typeField.addEventListener('change', onTypeChange);
-  roomCapacityField.addEventListener('change', onRoomCapacityChange);
+  roomNumberField.addEventListener('change', onRoomNumberChange);
   timeOutField.addEventListener('change', onTimeOutChange);
   timeInField.addEventListener('change', onTimeInChange);
   form.addEventListener('submit', onSubmitForm);
@@ -153,7 +153,7 @@ const addValidateFormEvents = () => {
 
 const removeValidateFormEvents = () => {
   typeField.removeEventListener('change', onTypeChange);
-  roomCapacityField.removeEventListener('change', onRoomCapacityChange);
+  roomNumberField.removeEventListener('change', onRoomNumberChange);
   timeOutField.removeEventListener('change', onTimeOutChange);
   timeInField.removeEventListener('change', onTimeInChange);
   form.removeEventListener('submit', onSubmitForm);
@@ -180,8 +180,9 @@ const activateForm = () => {
 
   initPriceSlider();
   activateSlider();
-  previewImage('avatar', 'ad-form-header__preview');
-  previewImage('images', 'ad-form__photo');
+  resetForm();
+  createImagePreview('avatar', 'ad-form-header__preview');
+  createImagePreview('images', 'ad-form__photo');
   addValidateFormEvents();
 };
 

@@ -1,4 +1,4 @@
-import { arrayIsEmpty } from './util.js';
+import { checkArrayIsEmpty } from './util.js';
 
 const housingTypeContainer = document.querySelector('#housing-type');
 const housingTypeList = Array.from(housingTypeContainer.querySelectorAll('option'));
@@ -77,7 +77,7 @@ const generateAdvertisingMarkup = (advetrtisment) => {
     timeElement.textContent = `Заезд после ${advetrtisment.offer.checkin}, выезд до ${advetrtisment.offer.checkout}`;
   }
 
-  if (arrayIsEmpty(advetrtisment.offer.features)) {
+  if (checkArrayIsEmpty(advetrtisment.offer.features)) {
     featureList.remove();
   } else {
     advetrtisment.offer.features.forEach((item) => {
@@ -98,7 +98,7 @@ const generateAdvertisingMarkup = (advetrtisment) => {
     descriptionElement.remove();
   }
 
-  if (arrayIsEmpty(advetrtisment.offer.photos)) {
+  if (checkArrayIsEmpty(advetrtisment.offer.photos)) {
     photosContainer.remove();
   } else {
     for (const imgSource of advetrtisment.offer.photos) {
