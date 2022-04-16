@@ -61,19 +61,19 @@ const returnCapacityErrorMessage = () => {
   return `${roomNumberFieldSelectedText} — ${roomNumberFieldValue}`;
 };
 
-const onRoomCapacityChange = () => {
-  pristine.validate(roomNumberField);
+const onRoomNumberChange = () => {
+  pristine.validate(roomCapacityField);
 };
 
 pristine.addValidator (
   roomNumberField,
-  validateCapacity,
-  returnCapacityErrorMessage
+  validateCapacity
 );
 
 pristine.addValidator (
   roomCapacityField,
-  validateCapacity
+  validateCapacity,
+  returnCapacityErrorMessage
 );
 
 /* Time fields synchronization */
@@ -144,7 +144,7 @@ const onResetButtonClick = () => {
 /* Events */
 const addValidateFormEvents = () => {
   typeField.addEventListener('change', onTypeChange);
-  roomCapacityField.addEventListener('change', onRoomCapacityChange);
+  roomNumberField.addEventListener('change', onRoomNumberChange);
   timeOutField.addEventListener('change', onTimeOutChange);
   timeInField.addEventListener('change', onTimeInChange);
   form.addEventListener('submit', onSubmitForm);
@@ -153,7 +153,7 @@ const addValidateFormEvents = () => {
 
 const removeValidateFormEvents = () => {
   typeField.removeEventListener('change', onTypeChange);
-  roomCapacityField.removeEventListener('change', onRoomCapacityChange);
+  roomNumberField.removeEventListener('change', onRoomNumberChange);
   timeOutField.removeEventListener('change', onTimeOutChange);
   timeInField.removeEventListener('change', onTimeInChange);
   form.removeEventListener('submit', onSubmitForm);
