@@ -23,35 +23,30 @@ const sliderOptions = {
       min: formOptions.minPrice['flat'],
       max: formOptions.MAX_PRICE_VALUE,
     },
-    start: formOptions.minPrice['flat'],
   },
   bungalow: {
     range: {
       min: formOptions.minPrice['bungalow'],
       max: formOptions.MAX_PRICE_VALUE,
     },
-    start: formOptions.minPrice['bungalow'],
   },
   hotel: {
     range: {
       min: formOptions.minPrice['hotel'],
       max: formOptions.MAX_PRICE_VALUE,
     },
-    start: formOptions.minPrice['hotel'],
   },
   house: {
     range: {
       min: formOptions.minPrice['house'],
       max: formOptions.MAX_PRICE_VALUE,
     },
-    start: formOptions.minPrice['house'],
   },
   palace: {
     range: {
       min: formOptions.minPrice['palace'],
       max: formOptions.MAX_PRICE_VALUE,
     },
-    start: formOptions.minPrice['palace'],
   },
 };
 

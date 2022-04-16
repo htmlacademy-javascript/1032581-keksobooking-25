@@ -128,12 +128,12 @@ const resetImageSrc = () => {
 };
 
 const resetForm = () => {
+  pristine.reset();
+  resetPriceSlider();
   form.reset();
   priceField.setAttribute('placeholder', defaultPriceValue);
-  pristine.reset();
   setStartPoint();
   resetImageSrc();
-  resetPriceSlider();
 };
 
 const onResetButtonClick = () => {
@@ -180,6 +180,7 @@ const activateForm = () => {
 
   initPriceSlider();
   activateSlider();
+  resetForm();
   previewImage('avatar', 'ad-form-header__preview');
   previewImage('images', 'ad-form__photo');
   addValidateFormEvents();
