@@ -87,12 +87,14 @@ const onTimeInChange = () => {
 
 /* Submit button states */
 const blockSubmitButton = () => {
-  submitButton.disabled = true;
+  submitButton.setAttribute('disabled', '');
+  submitButton.classList.add('ad-form--disabled');
   submitButton.textContent = 'Опубликовую...';
 };
 
 const unblockSubmitButton = () => {
-  submitButton.disabled = false;
+  submitButton.removeAttribute('disabled');
+  submitButton.classList.remove('ad-form--disabled');
   submitButton.textContent = submitButtonDefaultvalue;
 };
 
