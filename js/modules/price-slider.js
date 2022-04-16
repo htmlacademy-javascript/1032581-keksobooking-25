@@ -1,4 +1,4 @@
-import { sliderOptions } from './slider-options.js';
+import { sliderOptions } from '../options/slider-options.js';
 
 const priceSlider = document.querySelector('.ad-form__slider');
 const priceField = document.querySelector('#price');
@@ -32,8 +32,16 @@ const initPriceSlider = () => {
   initSliderEvents();
 };
 
+const deactivateSlider = () => {
+  priceSlider.setAttribute('disabled', '');
+};
+
+const activateSlider = () => {
+  priceSlider.removeAttribute('disabled');
+};
+
 const resetPriceSlider = () => {
   priceSlider.noUiSlider.set(sliderOptions.initial.start);
 };
 
-export { initPriceSlider, resetPriceSlider };
+export { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider };

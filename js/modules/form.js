@@ -1,9 +1,9 @@
-import {formOptions} from './form-options.js';
+import { formOptions } from '../options/form-options.js';
 import { previewImage } from './image-preview.js';
-import { initPriceSlider, resetPriceSlider } from './price-slider.js';
+import { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider } from './price-slider.js';
 import { sendData } from './load.js';
 import { resetFilter } from './filter.js';
-import { onSendSuccess, onSendError } from './state.js';
+import { onSendSuccess, onSendError } from './load-state.js';
 import { setStartPoint } from './map.js';
 
 const form = document.querySelector('.ad-form');
@@ -87,12 +87,14 @@ const onTimeInChange = () => {
 
 /* Submit button states */
 const blockSubmitButton = () => {
-  submitButton.disabled = true;
+  submitButton.setAttribute('disabled', '');
+  submitButton.classList.add('ad-form--disabled');
   submitButton.textContent = 'Опубликовую...';
 };
 
 const unblockSubmitButton = () => {
-  submitButton.disabled = false;
+  submitButton.removeAttribute('disabled');
+  submitButton.classList.remove('ad-form--disabled');
   submitButton.textContent = submitButtonDefaultvalue;
 };
 
@@ -165,7 +167,7 @@ const deactivateForm = () => {
   for(const fieldset of formFieldsets) {
     fieldset.setAttribute('disabled', '');
   }
-
+  deactivateSlider();
   removeValidateFormEvents();
 };
 
@@ -177,6 +179,7 @@ const activateForm = () => {
   }
 
   initPriceSlider();
+  activateSlider();
   previewImage('avatar', 'ad-form-header__preview');
   previewImage('images', 'ad-form__photo');
   addValidateFormEvents();

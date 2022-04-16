@@ -1,5 +1,5 @@
 import { renderMap } from './map.js';
-import { priceOptions } from './filter-options.js';
+import { priceOptions } from '../options/filter-options.js';
 import { debounce } from './util.js';
 
 const filterForm = document.querySelector('.map__filters');
