@@ -1,6 +1,6 @@
 import {formOptions} from './form-options.js';
 import { previewImage } from './image-preview.js';
-import { initPriceSlider, resetPriceSlider } from './price-slider.js';
+import { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider } from './price-slider.js';
 import { sendData } from './load.js';
 import { resetFilter } from './filter.js';
 import { onSendSuccess, onSendError } from './state.js';
@@ -165,7 +165,7 @@ const deactivateForm = () => {
   for(const fieldset of formFieldsets) {
     fieldset.setAttribute('disabled', '');
   }
-
+  deactivateSlider();
   removeValidateFormEvents();
 };
 
@@ -177,6 +177,7 @@ const activateForm = () => {
   }
 
   initPriceSlider();
+  activateSlider();
   previewImage('avatar', 'ad-form-header__preview');
   previewImage('images', 'ad-form__photo');
   addValidateFormEvents();

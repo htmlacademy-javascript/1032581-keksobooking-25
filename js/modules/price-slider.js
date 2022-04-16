@@ -32,8 +32,16 @@ const initPriceSlider = () => {
   initSliderEvents();
 };
 
+const deactivateSlider = () => {
+  priceSlider.setAttribute('disabled', '');
+};
+
+const activateSlider = () => {
+  priceSlider.removeAttribute('disabled');
+};
+
 const resetPriceSlider = () => {
   priceSlider.noUiSlider.set(sliderOptions.initial.start);
 };
 
-export { initPriceSlider, resetPriceSlider };
+export { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider };
