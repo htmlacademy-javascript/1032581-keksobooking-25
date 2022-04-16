@@ -1,7 +1,7 @@
 import { generateAdvertisingMarkup } from './generate-advertising-markup.js';
 import { activateForm } from './form.js';
 import { activateFilter } from './filter.js';
-import { mapOptions } from './map-options.js';
+import { mapOptions } from '../options/map-options.js';
 import { getData } from './load.js';
 import { showAlert } from './util.js';
 
