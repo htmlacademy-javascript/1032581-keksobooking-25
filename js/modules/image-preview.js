@@ -1,6 +1,6 @@
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-const previewImage = (inputFileID, imageContainerClass) => {
+const createImagePreview = (inputFileID, imageContainerClass) => {
   const fileChooseInput = document.querySelector(`#${inputFileID}`);
   const imageContainer = document.querySelector(`.${imageContainerClass}`);
   const imagePreview = document.querySelector(`.${imageContainerClass} img`);
@@ -26,4 +26,4 @@ const previewImage = (inputFileID, imageContainerClass) => {
   });
 };
 
-export { previewImage };
+export { createImagePreview };

@@ -1,4 +1,4 @@
-const arrayIsEmpty = (array) => array === undefined || array.length === 0;
+const checkArrayIsEmpty = (array) => array === undefined || array.length === 0;
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
@@ -29,4 +29,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export { showAlert, arrayIsEmpty, debounce } ;
+export { showAlert, checkArrayIsEmpty, debounce } ;

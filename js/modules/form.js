@@ -1,5 +1,5 @@
 import { formOptions } from '../options/form-options.js';
-import { previewImage } from './image-preview.js';
+import { createImagePreview } from './image-preview.js';
 import { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider } from './price-slider.js';
 import { sendData } from './load.js';
 import { resetFilter } from './filter.js';
@@ -181,8 +181,8 @@ const activateForm = () => {
   initPriceSlider();
   activateSlider();
   resetForm();
-  previewImage('avatar', 'ad-form-header__preview');
-  previewImage('images', 'ad-form__photo');
+  createImagePreview('avatar', 'ad-form-header__preview');
+  createImagePreview('images', 'ad-form__photo');
   addValidateFormEvents();
 };
 
