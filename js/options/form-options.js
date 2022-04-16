@@ -21,4 +21,4 @@ const formOptions = {
   }
 };
 
-export {formOptions};
+export { formOptions };

@@ -1,4 +1,4 @@
-import {formOptions} from '../options/form-options.js';
+import { formOptions } from '../options/form-options.js';
 import { previewImage } from './image-preview.js';
 import { initPriceSlider, resetPriceSlider, deactivateSlider, activateSlider } from './price-slider.js';
 import { sendData } from './load.js';

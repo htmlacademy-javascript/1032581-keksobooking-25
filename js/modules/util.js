@@ -29,4 +29,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export { showAlert, arrayIsEmpty, debounce} ;
+export { showAlert, arrayIsEmpty, debounce } ;
